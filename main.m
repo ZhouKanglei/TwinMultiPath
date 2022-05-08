@@ -1,72 +1,25 @@
 close all; clear all; clc;
-addpath(genpath('utils/'));
 addpath(genpath('src/'));
+addpath(genpath('utils/vis'));
 
-%% Global variables...      
+%% Global variables...
 globalVars();
 
-dataRange = [2 2 2  2 2 2 2 2  2 2 2 2 2  2 2 2 2 2  2 2 2 2 2  2 2 2 2 2  2 2];
-distOpt = 1;
-epsilon = 0.5;
-testRatio = 0.25;
+dataSetNum = 13;
 
-if ~exist([resFolder, '/mainExp'], 'dir')
-    mkdir([resFolder, '/mainExp']);
+if ~exist([resFolder, '/Piecewise'], 'dir')
+    mkdir([resFolder, '/Piecewise']);
 end
 
-if ~exist([resFolder, '/mainExp/Ours'], 'dir')
-    mkdir([resFolder, '/mainExp/Ours']);
-end
 
-event_1_all = zeros(9, 13);
-event_2_all = zeros(9, 13);
+%% Iteration.
+filePath = [resFolder, '/mainExp/', methods{1}, '/',...
+    num2str(testRatio), '_',  num2str(dataSetNum), '.mat'];
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% OVOVR TSVM
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-for dataSetNum = dataRange
-    for times = 1 : 10
-        [trainData, testData, classNum] = loadData(dataSetNum);
-        %% Training...
-        tic;
-        [Lambda_1, Alpha, Beta, ...
-            Lambda_2, Mu, Rho, ...
-            event_1, event_2] = trainPath(trainData, classNum);
-        time(times) = toc;
-        event_1_all = event_1_all + mean(event_1')';
-        event_2_all = event_2_all + mean(event_2')';
-        
-        %% Validation...
-        tic;
-        [optLambda_1, optAlpha, optBeta, ...
-            optLambda_2, optMu, optRho] = validPath(...
-            trainData, trainData, classNum, ...
-            Lambda_1, Alpha, Beta, ...
-            Lambda_2, Mu, Rho);
-        time_valid(times) = toc;
-        
-        %% Test..
-        [corrPred(times), corrPreds(times, :)] = testPath(...
-            trainData, testData, classNum,...
-            optLambda_1, optAlpha, optBeta, ...
-            optLambda_2, optMu, optRho);
-    end
-    
-    %% Save data.
-    dataFullPath = [resFolder, '/mainExp/Ours/',...
-            num2str(testRatio), '_',  num2str(dataSetNum), '.mat'];
-    
-    if exist(dataFullPath, 'file')
-        old_corrPred = load(dataFullPath, 'corrPred');
-        
-        if mean(corrPred) > mean(old_corrPred.corrPred)
-            save(dataFullPath);
-            fprintf(' %.4f  -->  %.4f\n', mean(old_corrPred.corrPred), mean(corrPred));
-        else
-            fprintf(' %.4f  ---  %.4f\n', mean(old_corrPred.corrPred), mean(corrPred));
-        end
-    else
-        fprintf(' --> %.4f\n', mean(corrPred));
-        save(dataFullPath);
-    end
+if exist(filePath, 'file')
+    load(filePath);
+	
+	plotSolutionPath(Lambda_1{1}, Alpha{1}, Beta{1}, 1);
+    plotSolutionPath(Lambda_2{1}, Mu{1}, Rho{1}, 2);
+
 end

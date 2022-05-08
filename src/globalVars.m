@@ -1,6 +1,6 @@
 %% Global data path...
 global dataPath dataSetNum dataSetName interval norm;
-dataPath = 'E:\Code_Files\Matlab\SVM\TwinMultiPath\data';
+dataPath = './data';
 interval = '&';
 dataSetNum = 6;
 dataSetName = '';

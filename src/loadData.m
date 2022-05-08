@@ -35,7 +35,7 @@ function [trainData, testData, classNum, filename] = loadData(...
     for i = 1 : size(fileNames, 2)
         fullFilename = char(fileNames(i));
         filename = fullFilename(1 : size(fullFilename, 2) - 4);
-        load([dataPath, '\', filename]);
+        load([dataPath, '/', filename]);
         Data = eval(filename);
         [n, m] = size(Data);
         m = m - 1;
@@ -75,7 +75,7 @@ function [trainData, testData, classNum, filename] = loadData(...
     for i = dataSetNum : dataSetNum
         fullFilename = char(fileNames(i));
         filename = fullFilename(1 : size(fullFilename, 2) - 4);
-        load([dataPath, '\', filename]);
+        load([dataPath, '/', filename]);
         Data = eval(filename);
         [n, m] = size(Data);
         m = m - 1;
