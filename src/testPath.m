@@ -11,13 +11,13 @@ function [corrPred, corrPreds] = testPath(trainData, testData, classNum,...
             numCnt = numCnt + 1;
             testDataSplit = testData;
             ySplit(y == class_i) = 1;
-            ySplit(y == class_j) = - 1;
+            ySplit(y == class_j) = -1;
             ySplit(y ~= class_i & y ~= class_j) = 0;
             testDataSplit(:, 1) = ySplit;
 
             [F, G, H, trainDataSplit] = splitData(trainData, class_i, class_j);
             %% Predict.
-            [corrRatio ySplit_pred] = predictData(testDataSplit, ...
+            [corrRatio, ySplit_pred] = predictData(testDataSplit, ...
                 optLambda_1(numCnt), optAlpha{numCnt}, optBeta{numCnt}, ...
                 optLambda_2(numCnt), optMu{numCnt}, optRho{numCnt});
 
@@ -25,6 +25,7 @@ function [corrPred, corrPreds] = testPath(trainData, testData, classNum,...
             Y(:, class_j) = Y(:, class_j) + ySplit_pred(:, 2);
         end
     end
+    %% Calculate the final prediction acc.
     [~, y_pred] = max(Y');
     for class_i =  1 : classNum
         class_i_idx = find(y == class_i);

@@ -4,8 +4,8 @@ clear all;
 close all;
 
 dataRange_tab = [2 3 6 7 8 9 10 12 13];
+% dataRange_tab = [1 2 3 4 5 6 7 8 9 10 11 12 13 14];
 times = 10;
-
 
 %% Global variables...
 globalVars();
@@ -92,8 +92,6 @@ for dataSetNum = dataRange_tab
                 fprintf([' %s ', interval], dataSetName);
             end
             fprintf([' %.2f ', '$\\pm$'], mean(corrPred));
-%             fprintf([' %.2f ', interval], max(corrPred)...
-%                 - min(corrPred));
             if methods_idx ~= length(methods)
                 fprintf([' %.2f ', interval], std(corrPred));
             else

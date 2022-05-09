@@ -4,7 +4,7 @@ function [optLambda_1, optAlpha, optBeta, ...
     Lambda_1, Alpha, Beta, ...
     Lambda_2, Mu, Rho)
     
-    fprintf('Validating...');
+    fprintf('Validating...\n');
     %% Vaild.
     numCnt = 0;
     for class_i = 1 : classNum
@@ -31,6 +31,8 @@ function [optLambda_1, optAlpha, optBeta, ...
             optLambda_2(numCnt) = lambda_2(optIdx_2);
             optMu{numCnt} = mu(:, optIdx_2);
             optRho{numCnt} = rho(:, optIdx_2);
+	    
+	    fprintf('\t%d - %d, max_acc = %.4f, opt = (%d, %d)\n', class_i, class_j, optRatio, optIdx_1, optIdx_2);
         end
     end
     fprintf('Done!\n');
