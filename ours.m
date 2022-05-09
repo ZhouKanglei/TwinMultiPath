@@ -8,9 +8,9 @@ globalVars();
 dataRange = [1 2 3 4 5 6 7 8 9 10 11 12 13 14];
 dataRange = [2 3 6 7 8 9 10 12 13];
 dataRange = [2 7 8 9 10 13];
-dataRange = [13];
+dataRange = [15];
 
-distOpt = 3;    % decision function type: 1, 2, 3
+distOpt = 1;    % decision function type: 1, 2, 3
 epsilon = 0.5;  
 testRatio = 0.25;
 
@@ -51,7 +51,7 @@ for dataSetNum = dataRange
         
         %% Test..
         [corrPred(times), corrPreds(times, :)] = testPath(...
-            trainData, testData, classNum,...
+            trainData, [trainData; testData], classNum,...
             optLambda_1, optAlpha, optBeta, ...
             optLambda_2, optMu, optRho);
     end

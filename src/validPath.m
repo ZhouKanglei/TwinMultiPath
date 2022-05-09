@@ -20,9 +20,13 @@ function [optLambda_1, optAlpha, optBeta, ...
             mu = Mu{numCnt};
             rho = Rho{numCnt};
             
-            [optIdx_1, optIdx_2, optRatio] = validOpt(...
+            [optIdx_1, optIdx_2, optRatio, corrRatio] = validOpt(...
                 trainDataSplit, lambda_1, alpha, beta, ...
                 lambda_2, mu, rho);
+            
+            id = [num2str(class_i), '_', num2str(class_j)];
+            save(['res/mix/valid_', id, '.mat']);
+            fprintf('save %s', ['plot_dist_', id, '.mat']);
 
             %% Logs
             optLambda_1(numCnt) = lambda_1(optIdx_1);
@@ -47,12 +51,12 @@ function [optIdx_1, optIdx_2, corrMaxRatio, corrRatio] = validOpt(...
    step_1 = 1;
    step_2 = 1;
 
-   if length(lambda_1) > 500 || length(lambda_2) > 500
+   if length(lambda_1) > 1500 || length(lambda_2) > 1500
     step_1 = round(2);
     step_2 = round(2);
    end
 
-   if length(lambda_1) > 600 || length(lambda_2) > 600
+   if length(lambda_1) > 1600 || length(lambda_2) > 1600
     step_1 = round(3);
     step_2 = round(3);
    end
