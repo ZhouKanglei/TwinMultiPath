@@ -26,7 +26,7 @@ function [optLambda_1, optAlpha, optBeta, ...
             
             id = [num2str(class_i), '_', num2str(class_j)];
             save(['res/mix/valid_', id, '.mat']);
-            fprintf('save %s', ['plot_dist_', id, '.mat']);
+            fprintf('Save %s', ['plot_dist_', id, '.mat\n']);
 
             %% Logs
             optLambda_1(numCnt) = lambda_1(optIdx_1);

@@ -4,7 +4,7 @@ dataPath = './data';
 interval = '&';
 dataSetNum = 6;
 dataSetName = '';
-norm = false;
+norm = true;
 
 global resFolder;
 resFolder = 'res';

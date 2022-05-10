@@ -40,4 +40,8 @@ function [corrPred, corrPreds] = testPath(trainData, testData, classNum,...
     fprintf('-------------------Prediction--------------------\n');
     fprintf('Prediction accruary: %.4f\n', corrPred);
     fprintf('--------------------------------------------------\n');
+    
+    save(['res/mix/pred', '.mat']);
+    fprintf('Save pred.mat \n');
+
 end
