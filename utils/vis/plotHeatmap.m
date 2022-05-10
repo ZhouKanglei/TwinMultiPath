@@ -63,12 +63,13 @@ max_r = max(ratio_c);
 
 title('Validation Accuracy Curve');
 
-xlabel(['Regularization Parameter Combination Pairs (\lambda_1, \lambda_2)']);
-ylabel(['Accuracy (%)']);
+xlabel(['Regularization Parameter Combination Pairs ($\lambda_1$, $\lambda_2$)']);
+ylabel(['Accuracy (\%)']);
 
 grid on;
 
-setFigPaper('FontName','Times New Roman', 'FontSize', 18, 'LineWidth', 1);
+setFigPaper('FontName','Times New Roman', 'FontSize', 16, 'LineWidth', 1, 'Interpreter', 'latex');
+
 
 filename = ['res/plots/valid/valid', fig_title, '.pdf'];
 [path, ~] = fileparts(filename);
@@ -98,9 +99,9 @@ h = heatmap(xvalues, yvalues, ratio_map);
 colorbar;
 
 title('Validation Accuracy Heatmap');
-xlabel(['\lambda_2']);
-ylabel(['\lambda_1']);
-setFigPaper('FontName','Times New Roman', 'FontSize', 16, 'LineWidth', 1);
+xlabel(['$\lambda_2$']);
+ylabel(['$\lambda_1$']);
+setFigPaper('FontName','Times New Roman', 'FontSize', 16, 'LineWidth', 1, 'Interpreter', 'latex');
 
 filename = ['res/valid/valid_map', fig_title, '.pdf'];
 [path, ~] = fileparts(filename);

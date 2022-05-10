@@ -187,12 +187,10 @@ function plotSolutionPath(lambda_1, alpha_1, beta_1, f_1, w_1, b_1, num)
     
     if num == 1
         area_matrix(:, 1) = ones(length(lambda_1), 1) * -1;
-        area_matrix(:, 2) = ones(length(lambda_1), 1) * 0.5;
-        area_matrix(:, 3) = ones(length(lambda_1), 1) * f_1_max + 1;
+        area_matrix(:, 2) = ones(length(lambda_1), 1) * f_1_max + 1;
     else
-        area_matrix(:, 1) = ones(length(lambda_1), 1) * 0.5;
-        area_matrix(:, 2) = ones(length(lambda_1), 1) * 1;
-        area_matrix(:, 3) = ones(length(lambda_1), 1) * f_1_max - 1;
+        area_matrix(:, 1) = ones(length(lambda_1), 1) * 1;
+        area_matrix(:, 2) = ones(length(lambda_1), 1) * f_1_max - 1;
     end
     area(area_matrix, f_1_min, 'LineWidth', 1.5,...
             'LineStyle', '-.', 'EdgeColor', 'g', 'FaceAlpha', 0.9); hold on;
@@ -202,12 +200,12 @@ function plotSolutionPath(lambda_1, alpha_1, beta_1, f_1, w_1, b_1, num)
     ylim([f_1_min f_1_max]);
     
     title(['$f_', num2str(num), '$   Variation Diagram']);
-    xlabel(['Step $l$']);
-    ylabel(['$f_', num2str(num), '$']);
+    xlabel(['Step \itl']);
+    ylabel(['\it f\rm_', num2str(num)]);
     
     grid on;
     setFigPaper('Interpreter', 'latex', 'FontSize', 12, 'LineWidth', 1, 'Width', [15, 0.4]);
-    filename = ['res/piecewise/QPP_', num2str(num), '/', 'f_' , num2str(num), '.pdf'];
+    filename = ['res/plots/QPP_', num2str(num), '/', 'f_' , num2str(num), '.pdf'];
     folder = fileparts(filename);
     
     if ~exist(folder, 'dir')
@@ -229,13 +227,13 @@ function plotSolutionPath(lambda_1, alpha_1, beta_1, f_1, w_1, b_1, num)
     xlim([1 length(lambda_1)]); 
     ylim([w_1_min w_1_max]);
     
-    title(['$w_', num2str(num), '$ Variation Diagram']);
-    xlabel(['Step $l$']);
-    ylabel(['$w_', num2str(num), '$']);
+    title(['\it \bf w\rm_', num2str(num), '  \bf Variation Diagram']);
+    xlabel(['Step \itl']);
+    ylabel(['\it \bf w\rm_', num2str(num)]);
     
     grid on;
     setFigPaper('Interpreter', 'latex', 'FontSize', 12, 'LineWidth', 1, 'Width', [15, 0.4]);
-    filename = ['res/piecewise/QPP_', num2str(num), '/', 'w_' , num2str(num), '.pdf'];
+    filename = ['res/plots/QPP_', num2str(num), '/', 'w_' , num2str(num), '.pdf'];
     folder = fileparts(filename);
     
     if ~exist(folder, 'dir')
@@ -257,13 +255,13 @@ function plotSolutionPath(lambda_1, alpha_1, beta_1, f_1, w_1, b_1, num)
     xlim([1 length(lambda_1)]); 
     ylim([b_1_min b_1_max]);
     
-    title(['$b_', num2str(num), '$ Variation Diagram']);
-    xlabel(['Step $l$']);
-    ylabel(['$b_', num2str(num), '$']);
+    title(['\it{b}\rm_', num2str(num), '  \bf Variation Diagram']);
+    xlabel(['Step \itl']);
+    ylabel(['\it b\rm_', num2str(num)]);
     
     grid on;
     setFigPaper('Interpreter', 'latex', 'FontSize', 12, 'LineWidth', 1, 'Width', [15, 0.4]);
-    filename = ['res/piecewise/QPP_', num2str(num), '/', 'b_' , num2str(num), '.pdf'];
+    filename = ['res/plots/QPP_', num2str(num), '/', 'b_' , num2str(num), '.pdf'];
     folder = fileparts(filename);
     
     if ~exist(folder, 'dir')

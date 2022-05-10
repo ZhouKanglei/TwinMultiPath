@@ -21,7 +21,7 @@ for i = 1 : length(styles)
     color = char(colors(i));
     plot(X(y1 == i, 1), X(y1 == i, 2), style,...
         'MarkerFaceColor', color,'MarkerEdgeColor', color,...
-        'MarkerSize', 12, 'LineWidth', 2);
+        'MarkerSize', 9, 'LineWidth', 2);
     hold on;
 end
 
