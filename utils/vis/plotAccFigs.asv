@@ -5,9 +5,6 @@ close all;
 
 %% Global variables...
 globalVars();
-methods = {};
-methods{1} = 'Ours';
-methods{2} = 'OVOVR_TSVM';
 
 dataRange = [1:13];
 times = 10;
@@ -40,19 +37,18 @@ for dataSetNum = dataRange
     legend(['Ours (OVOVR)'], ['TSVM (OVOVR)'], ['TSVM (OVR)'], ['TSVM (OVO)'], ['SVM (OVR)'], ['SVM (OVO)'],...
      'Location', 'best');
     xlabel(['Times']);
-    ylabel(['Accuracy (\%)']);
+    ylabel(['Correct Ratio (%)']);
     set(gca, 'FontSize', 22, 'FontName', 'Times New Roman', 'LineWidth', 1.5);
     set(gcf, 'unit', 'centimeters', 'position', [dataSetNum 2 20 15]); 
 
     set(gcf, 'PaperPosition', [0 0 20 15]);
     set(gcf, 'PaperSize', [20 15]);
-    %saveas(gcf, [resFolder, '/plots/Ours_vs_OVOVR-TSVM/acc_', num2str(testRatio * 100), '_',  num2str(dataSetNum), '.pdf']); 
+    saveas(gcf, [resFolder, '/plots/Ours_vs_OVOVR-TSVM/acc_', num2str(testRatio * 100), '_',  num2str(dataSetNum), '.pdf']); 
     
     hold off;
     
-    grid on;
-    setFigPaper('Interpreter', 'latex', 'FontSize', 12, 'LineWidth', 1, 'Width', 12);
-    filename = [resFolder, '/plots/Ours_vs_OVOVR-TSVM/acc_', num2str(testRatio * 100), '_',  num2str(dataSetNum), '.pdf'];
+    setFigPaper('Interpreter', 'latex', 'FontSize', 12, 'LineWidth', 1, 'Width', [15, 0.4]);
+    filename = ['res/piecewise/QPP_', num2str(num), '/', 'alpha_' , num2str(num), '.pdf'];
     folder = fileparts(filename);
     
     if ~exist(folder, 'dir')

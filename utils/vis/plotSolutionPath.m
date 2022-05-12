@@ -4,7 +4,7 @@ function plotSolutionPath(lambda_1, alpha_1, beta_1, f_1, w_1, b_1, num)
     %% Plot lambda_1
     fig = figure('Visible', 'off', 'Position', [10 10 600 250]);
     
-    plot(log(lambda_1), '-', 'Color', char(colors{num}), 'LineWidth', 1.5);
+    plot(log(lambda_1), '-', 'Color', char(colors{1}), 'LineWidth', 1.5);
     
     xlim([1 length(lambda_1)]); 
     ylim([min(log(lambda_1)) max(log(lambda_1))]);
@@ -119,6 +119,8 @@ function plotSolutionPath(lambda_1, alpha_1, beta_1, f_1, w_1, b_1, num)
         title(['$\beta$', '  Variation Diagram']);
         ylabel(['$\beta$']);
     end
+    
+    xlabel(['Step $l$']);
     
     grid on;
     setFigPaper('Interpreter', 'latex', 'FontSize', 12, 'LineWidth', 1, 'Width', [15, 0.4]);
@@ -249,7 +251,7 @@ function plotSolutionPath(lambda_1, alpha_1, beta_1, f_1, w_1, b_1, num)
     %% Plot b_1
     fig = figure('Visible', 'off', 'Position', [10 10 600 250]);
     
-    plot(b_1', '--', 'LineWidth', 1.5, 'Color', char(colors{3}));
+    plot(b_1', '-', 'LineWidth', 1.5, 'Color', char(colors{2}));
     
     b_1_max = max(b_1);
     b_1_min = min(b_1);
