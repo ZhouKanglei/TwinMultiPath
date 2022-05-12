@@ -1,7 +1,5 @@
 # Solution Path Algorithm for Twin Multi-class Support Vector Machine
 
-## Authors
-
 
 
 
